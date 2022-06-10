@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>FILE UPLOAD IN DB</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <div class="row">
+    <div class="col-md-6 offset-3">
+
+<!--            <form th:action="@{/upload}" method="post" enctype="multipart/form-data">-->
+<!--                <div class="mb-3">-->
+<!--                    <label for="file" class="form-label">File: </label>-->
+<!--                    <input id="data" class="form-control" type="file" name="data">-->
+<!--                </div>-->
+<!--                <button type="submit" class="btn btn-primary">Upload For DataBase</button>-->
+
+<!--            </form>-->
+
+        <form th:action="@{/uploadDb}" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label for="file" class="form-label">File: </label>
+                <input id="file" class="form-control" type="file" name="file">
+            </div>
+            <button type="submit" class="btn btn-primary">Upload</button>
+
+        </form>
+    </div>
+        </br>
+        <a  th:href="@{/download}" download="" class="btn btn-info">Download</a>
+    <table border="1" width="90%" class="table table-bordered">
+        <tr>
+            <th>BTS Name(ID)</th>
+            <th>Logic Id</th>
+            <th>Time Up</th>
+            <th>Time Down</th>
+            <th>Duration</th>
+            <th>Topology</th>
+            <th>Additional Info</th>
+            <th>Latitude</th>
+            <th>Longitude</th>
+        </tr>
+        <th:block th:each="file : ${fileList}">
+            <tr>
+                <td>[[${file.device_name_id}]]</td>
+                <td>[[${file.logic_id}]]</td>
+                <td>[[${file.time_up}]]</td>
+                <td>[[${file.time_down}]]</td>
+                <td>[[${file.duration}]]</td>
+                <td>[[${file.topology}]]</td>
+                <td>[[${file.additional_info}]]</td>
+                <td>[[${file.latitude}]]</td>
+                <td>[[${file.longitude}]]</td>
+            </tr>
+        </th:block>
+    </table>
+</div>
+</div>
+</body>
+</html>
